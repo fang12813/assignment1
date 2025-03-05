@@ -1,3 +1,6 @@
+
+// https://chatgpt.com/share/67c8b1c1-771c-8013-a837-cc07faac5c82
+
 #include <iostream>
 
 // Template Node structure
