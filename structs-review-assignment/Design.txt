@@ -1,6 +1,14 @@
-Program Name:
+Program Name: CS162 Structs review assignment
 
-Program Description:
+Program Description:  write an app to maintain a list of activities that the user likes to participate in. The app should load all activity information from a data file (activities.txt) once the app is started. It allows the user to view, add, remove, and search for activities. The app should save the data back to the same data file when the program exits.
+In this assignment we need to create and submit a zip file, activities.zip with the following files 
+activity.h
+activity.cpp
+main.h
+main.cpp
+activities.txt
+algorithm.pdf
+
 
 
 Design:
