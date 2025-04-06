@@ -10,8 +10,7 @@ activities.txt
 algorithm.pdf
 
 zybooks assignment:
-
-
+(can't copy and paste here)
 
 Design:
 A. INPUT
@@ -21,14 +20,120 @@ B. OUTPUT
 Define the output variables including data types. 
 
 C. CALCULATIONS
-Describe calculations used by algorithms in step D.  
-List all formulas. 
-If there are no calculations needed, state there are no calculations.
+ no calculations needed
+
 
 D. LOGIC and ALGORITHMS
 Design the logic of your program using pseudocode or flowcharts. 
 Use conditionals, loops, functions or array constructs.
 List the steps in transforming inputs into outputs. 
+
+creat a zip file:
+activity.h
+activity.cpp
+main.h
+main.cpp
+activities.txt
+(Skiing;Mt Hood Meadows;Difficult;6;0
+ Wine Making;Umpqua Valley;Complicated;9;1
+ Catan;Epic Gaming;Easy;4;3
+ Oil Painting;Fun Studios;Tricky;6;2
+ Pottery;Fun Studios;Easy;7;2
+ Snowboarding;Mt Hood Meadows;Not for Faint of heart;8;0)
+
+**activity.cpp file
+use void print(std::ostream &os, Activity &it) {
+     os << it.name << '\t';
+     os << it.location << '\t';
+     os << it.level << '\t';
+     os << it.rating << '\t';
+     os << it.type << '\n';
+ }
+   
+   
+ void printAll(std::ostream &os, Activity arr[], size_t size) {
+     for(size_t i =0; i < size; i++) {
+         print(os, arr[i]);
+
+** activity.h file
+activity name, location , level
+rating 
+class Activity {   // can also use struct Activity
+     public:        // Only if using class keyword
+     static const size_t MAX_CHARS = 50;
+ 
+     char name[MAX_CHARS + 1] = {0};     
+     char location[MAX_CHARS + 1] = {0};
+     char level[MAX_CHARS + 1] = {0};
+     int rating;    // 1 - 10
+     int type;      // 0 - 4
+ };
+ 
+ 
+ void print(std::ostream &os, Activity &it);
+ 
+ void printAll(std::ostream &os, Activity arr[], size_t size);
+ 
+ #endif
+
+** main.cpp file
+set up the number of activity
+size_t MAX_ACTIVITIES = 30;
+ 
+   size_t activitiesSize = 0;
+ 
+   Activity activities[MAX_ACTIVITIES];
+ 
+   ifstream fin = ifstream("activities.txt"); 
+ 
+   loadActivities(fin, activities, activitiesSize);
+ 
+   printAll(cout, activities, activitiesSize);
+void loadActivities(istream &is, Activity arr[], size_t &size) {
+   char const DELIMITER = ';';
+   size = 0;
+   while(is && !is.peek() != EOF){
+     Activity it;
+     // read data from fil
+     is.getline(it.name, Activity::MAX_CHARS, DELIMITER);
+     is.getline(it.location, Activity::MAX_CHARS, DELIMITER);
+     is.getline(it.level, Activity::MAX_CHARS, DELIMITER);
+     is >> it.rating;
+     is.get(); // Remove delimiter
+     is >> it.type;
+     is.get(); // Remove \n newline character
+ 
+     // find sorted position
+     int pos = 0;
+// refactored to not use while true
+     bool next = true;
+     while(next) {
+       if (pos == size) {
+         next = false;
+       } else if(strcmp(arr[pos].name, it.name) > 0) {
+         pos++;
+       } else {
+         next = false;
+       }
+     }
+ 
+     
+     // insert at position
+     insert(arr, size, it, pos);
+ 
+   ** 
+ void insert(Activity arr[], size_t &size, Activity it, size_t pos) {
+   for(size_t i = size + 1; i > pos; i-- ) {
+     arr[i] = arr[i-1];
+   }
+   arr[pos] = it;
+   size++;
+** main.h filenclude "activity.h"
+ 
+ void loadActivities(std::istream &is, Activity arr[], size_t &size);
+ 
+ void insert(Activity arr[], size_t &size, Activity it, size_t pos);
+
 
 
 SAMPLE RUNS
