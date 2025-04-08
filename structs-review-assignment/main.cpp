@@ -18,7 +18,7 @@ int main(){
   size_t activitiesSize = 0;
 
   Activity activities[MAX_ACTIVITIES];
-  ifstream fin = ifstream("activities.txt";
+  ifstream fin = ifstream("activities.txt");
   loadActivities(fin, activities, activitiesSize);
   printALL(cout, activities,activitiesSize);
 
